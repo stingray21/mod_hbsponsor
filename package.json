@@ -1,0 +1,34 @@
+{
+  "name": "mod_hbsponsor",
+  "version": "1.0.0",
+  "date": "2018-02-09 21:06 GMT+0100",
+  "description": "Joomla! HB Sponsor extension",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/stingray21/mod_hbsponsor.git"
+  },
+  "keywords": [
+    "handball",
+    "joomla",
+    "sponsor",
+    "module"
+  ],
+  "author": "Jochen Stehle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stingray21/mod_hbsponsor/issues"
+  },
+  "homepage": "https://github.com/stingray21/mod_hbsponsor#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-bumpup": "^0.6.3",
+    "grunt-contrib-compress": "^1.4.3",
+    "grunt-joomla-packager": "0.1.0-b10",
+    "grunt-string-replace": "^1.3.1",
+    "grunt-sync": "^0.6.2"
+  }
+}
