@@ -1,20 +1,41 @@
-<?php 
-defined( '_JEXEC' ) or die( 'Restricted access' );
+<?php
+/**
+ * @package    [PACKAGE_NAME]
+ *
+ * @author     Jochen Stehle <stingray21@gmx.de>
+ * @copyright  
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @link       
+ */
+
+defined('_JEXEC') or die;
 
 
-$document = JFactory::getDocument();
-$document->addStyleSheet(JURI::base() . 'modules/mod_hbsponsor/css/default.css');
+// JHtml::_('stylesheet', 'mod_languages/template.css', array('version' => 'auto', 'relative' => true));
 
-//echo "<p>".JText::_('DESC_MODULE')."</p>";
+// Access to module parameters
+$width = $params->get('width', 240);
+$height = $params->get('height', 100);
 
-echo "<div class=\"sponsorBox\">";
+$ad_data = $params->get('ad_json', '[ { "url": "https://www.hkog.de" , "alt": "HKOG" } ]');
 
-$randomSponsor = rand(0,count($sponsors)-1);
+// echo __FILE__.' ('.__LINE__.'):<pre>';print_r($ad_data);echo'</pre>';
+$ads = json_decode($ad_data);
+// echo __FILE__.' ('.__LINE__.'):<pre>';print_r($ads);echo'</pre>';die;
 
-echo '<img src="./hbdata/images/sponsors/'.$sponsors[$randomSponsor]->logo.'" alt="'.$sponsors[$randomSponsor]->name.'" />';
+?>
 
-if (!empty($info)) {
-	echo '<p>'.$info.'</p';
-}
 
-echo "</div>";
+	<div id="hbsponsor">
+		<?php foreach ($ads as $i => $ad) : ?>
+		<div>
+			<div class="adbox" >
+				<a href="<?php echo $ad->url?>"  target="_BLANK" alt="<?php echo $ad->alt?>">
+					<span class="ad" style="background-position: <?php echo -$i*240?>px 0; width: <?php echo $width?>px; height: <?php echo $height?>px;"><?php echo $ad->alt?></span>
+				</a>
+			</div>
+		</div>
+		<?php endforeach ?>
+	</div>
+
+	<hr>

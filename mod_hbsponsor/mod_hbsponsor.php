@@ -1,39 +1,29 @@
 <?php
-//don't allow other scripts to grab and execute our file
-defined('_JEXEC') or die('Direct Access to this location is not allowed.');
+/**
+ * @package    [PACKAGE_NAME]
+ *
+ * @author     Jochen Stehle <stingray21@gmx.de>
+ * @copyright  
+ * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * @link       
+ */
 
-//This is the parameter we get from our xml file above
-$selectedSponsor = $params->get('sponsor');
-$displayMode = null;
-if ($selectedSponsor === 'all') {
-	$displayMode = $params->get('displayMode');
-}
-$info = $params->get('info');
+use Joomla\CMS\Helper\ModuleHelper;
 
-// get parameter from component menu item
-$menuitemid = JRequest::getInt('Itemid');
-if ($menuitemid)
-{
-	$menu = JFactory::getApplication()->getMenu();
-	$menuparams = $menu->getParams( $menuitemid );
-}
-//$displayMode = $menuparams->get('displayMode');
-//print_r($menuparams);
+defined('_JEXEC') or die;
 
-// Include the syndicate functions only once
-require_once dirname(__FILE__).'/helper.php';
-$sponsors = getSponsorArray($selectedSponsor);
 
-//Returns the path of the layout file
-switch ($displayMode)
-{
-	case 'all':
-		$layout = 'all';
-		break;
-	case 'random':
-	default:
-		$layout = 'default';
-		break;
-}
-require JModuleHelper::getLayoutPath('mod_hbsponsor', $params->get('layout', $layout));
 
+$document = JFactory::getDocument();
+
+$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css');
+$document->addStyleSheet('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css');
+$document->addStyleSheet('media/mod_hbsponsor/css/style.css');
+$document->addScript('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js');
+$document->addScript('media/mod_hbsponsor/js/hbsponsor.js');
+	
+
+$moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
+
+require ModuleHelper::getLayoutPath('mod_hbsponsor', $params->get('layout', 'default'));
+?>

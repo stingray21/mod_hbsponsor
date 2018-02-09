@@ -1,102 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE PUBLIC>
-<extension type="module" version="2.5.0" client="site" method="install">
-	<!-- Name of the Module -->
-	<name>HB Sponsor</name> 
-	<!-- Name of the Author -->
-	<author>Jochen Stehle</author> 
-	<!-- Version Date of the Module -->
-	<creationDate>27.02.2013</creationDate> 
-	<!-- Copyright information -->
-	<copyright>All rights reserved by Jochen Stehle</copyright> 
-	<!-- License Information -->
-	<license></license> 
-	<!-- Author's email address -->
-	<authorEmail>handballgeislingen@gmail.com</authorEmail> 
-	<!-- Author's website -->
-	<authorUrl></authorUrl> 
-	<!-- Module version number -->
-	<version>0.9.0</version> 
-	<!-- Description of what the module does -->
-	<description>Provides the training information of a team</description>
-	
-	<!-- SQL Files -->
-	<install> <!-- Runs on install -->
-		<sql>
-			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
-		</sql>
-	</install>
-	<uninstall> <!-- Runs on uninstall -->
-		<sql>
-			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
-		</sql>
-	</uninstall>
-	<update> <!-- Runs on update -->
-		<schemas>
-			<schemapath type="mysql">sql/updates/mysql</schemapath>
-		</schemas>
-	</update>
+<extension type="module" version="3.8" client="site" method="upgrade">
+	<name>MOD_HBSPONSOR</name>
+	<creationDate>2018-02-09 21:06 GMT+0100</creationDate>
+	<author>Jochen Stehle</author>
+	<authorEmail>stingray21@gmx.de</authorEmail>
+	<authorUrl></authorUrl>
+	<copyright></copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<version>2.0.0</version>
+	<description>MOD_HBSPONSOR_XML_DESCRIPTION</description>
 
-	
-	<!-- Listing of all files that should be installed for the module to function -->
 	<files>
-		<!-- The "module" attribute signifies that this is the main controller file -->
 		<filename module="mod_hbsponsor">mod_hbsponsor.php</filename>
-		<filename>index.html</filename>
-		<filename>helper.php</filename>
-		<filename>tmpl/default.php</filename>
-		<filename>tmpl/all.php</filename>
-		<filename>tmpl/index.html</filename>
-		<filename>css/default.css</filename>
-		<filename>css/index.html</filename>
-		<folder>sql</folder>
-		<folder>fields</folder>
+		<folder>tmpl</folder>
+		<folder>language</folder>
+		<filename>mod_hbsponsor.xml</filename>
 	</files>
 
-	<languages>
-		<!-- Any language files included with the module -->
-		<language tag="de-DE">language/de-DE.mod_hbsponsor.ini</language>
-	</languages>
+	<!-- Update servers -->
+	<updateservers>
+		<server type="extension" priority="1" name="Add slider for HB">https://www.example.com/mod_hbsponsor.xml</server>
+	</updateservers>
 
-	<!-- Optional parameters -->
 	<config>
 		<fields name="params">
-			<fieldset name="basic" addfieldpath="/modules/mod_hbsponsor/fields">
-				<field 
-					name="moduleclass_sfx" 
-					type="text" 
-					default="" 
-					label="LABEL_CLASS_SUFFIX" 
-					description="DESC_MOD_SUFFIX">
-				</field>
-				<field 
-					name="@spacer" 
-					type="spacer" 
-					default="" 
-					label="" 
-					description="">
-				</field>
-				<field 
-					name="displayMode" 
-					type="list" 
-					default="above" 
-					label="LABEL_MODHBSPONSOR_DISPLAYMODE" 
-					description="DESC_MODHBSPONSOR_DISPLAYMODE">
-						<option value="random">MODHBSPONSOR_DISPLAYMODE_RANDOM</option>
-						<option value="all">MODHBSPONSOR_DISPLAYMODE_ALL</option>
-				</field>
-				<field 
-					name="sponsor" 
-					type="sponsors" 
-					default="" 
-					label="Select a sponsor" >
-				</field>
-				<field 
-					name="info" 
-					label ="Info Text" 
-					type="editor"
-					width="300" 
-					filter="safehtml" />
+			<fieldset name="basic">
+				<field
+					name="width"
+					type="text"
+					label="MOD_HBSPONSOR_WIDTH_LABEL"
+					description="MOD_HBSPONSOR_WIDTH_DESCRIPTION"
+					default="240"
+				/>
+				<field
+					name="height"
+					type="text"
+					label="MOD_HBSPONSOR_HEIGHT_LABEL"
+					description="MOD_HBSPONSOR_HEIGHT_DESCRIPTION"
+					default="100"
+				/>
+				<field
+					name="ad_json"
+					type="textarea"
+					label="MOD_HBSPONSOR_JSON_LABEL"
+					description="MOD_HBSPONSOR_JSON_DESCRIPTION"
+				/>
+			</fieldset>
+			<fieldset
+					name="advanced">
+				<field
+						name="moduleclass_sfx"
+						type="text"
+						label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+						description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
 			</fieldset>
 		</fields>
 	</config>
